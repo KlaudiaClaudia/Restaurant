@@ -9,7 +9,7 @@ public class RestaurantController {
         printer("Witamy w naszej restauracji: ");
         printMenu();
         printSummary(takeOrder());
-        getDishesNumber();
+
     }
 
     private void printMenu() {
