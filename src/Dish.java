@@ -35,6 +35,6 @@ public class Dish {
 
     @Override
     public String toString() {
-        return id + " ; " + name + " ; " + price + "zł";
+        return id + " - " + name + " - " + price + "zł";
     }
 }
