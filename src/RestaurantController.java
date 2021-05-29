@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -32,13 +31,17 @@ public class RestaurantController {
         printer(summary);
     }
 
-    private List<Integer> getDishesNumber() {
-        Scanner sc = new Scanner(System.in);
-        String line = sc.nextLine();
-        String[] split = line.replaceAll(" ", "").split(",");
-        return Arrays.stream(split)
-                .map(Integer::valueOf)
-                .collect(Collectors.toList());
+    private List<Integer> getDishesNumber() throws InpuDataException {
+        try {
+            Scanner sc = new Scanner(System.in);
+            String line = sc.nextLine();
+            String[] split = line.replaceAll(" ", "").split(",");
+            return Arrays.stream(split)
+                    .map(Integer::valueOf)
+                    .collect(Collectors.toList());
+        } catch (NumberFormatException e) {
+            throw new InpuDataException("Złe dane");
+        }
     }
 
     // gets id dishes from user
