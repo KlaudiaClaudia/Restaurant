@@ -31,17 +31,22 @@ public class RestaurantController {
         printer(summary);
     }
 
-    private List<Integer> getDishesNumber() throws InpuDataException {
-        try {
-            Scanner sc = new Scanner(System.in);
-            String line = sc.nextLine();
-            String[] split = line.replaceAll(" ", "").split(",");
-            return Arrays.stream(split)
-                    .map(Integer::valueOf)
-                    .collect(Collectors.toList());
-        } catch (NumberFormatException e) {
-            throw new InpuDataException("Złe dane");
-        }
+    private List<Integer> getDishesNumber()  {
+        boolean optionOk = false;
+        List list = null;
+        while (!optionOk) {
+            try {
+                Scanner sc = new Scanner(System.in);
+                String line = sc.nextLine();
+                String[] split = line.replaceAll(" ", "").split(",");
+                list = Arrays.stream(split)
+                        .map(Integer::valueOf)
+                        .collect(Collectors.toList());
+                optionOk = true;
+            } catch (NumberFormatException e) {
+                printer("Złe dane. Spróbuj jeszcze raz");
+            }
+        }return list;
     }
 
     // gets id dishes from user
